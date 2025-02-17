@@ -31,7 +31,7 @@ This is the key to the loop.  The `JMP` instruction tells the computer to jump t
 
 ## Keying in manually
 
-The entire program is small enough and simple enough that it can be keyed into the computer directly via the front panel switches, no terminal is required.  Each instruction has a 4 digit octal value that represents it.  There are many resources that break down the purpose of each individual bit in each word, so that won't be covered here.  Instead, the process of entering things manually will be the focus of this section.  The assumption is that the program will be loaded in Page 1 of memory (*0200)
+The entire program is small enough and simple enough that it can be keyed into the computer directly via the front panel switches, no terminal is required.  Each instruction has a 4 digit octal value that represents it.  There are many resources that break down the purpose of each individual bit in each word, so that won't be covered here.  Instead, the process of entering things manually will be the focus of this section.  The assumption is that the program will be loaded in Page 1 of memory (0200)
 
 The word for each line is as follows:
 
