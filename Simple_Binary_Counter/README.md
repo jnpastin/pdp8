@@ -47,12 +47,12 @@ The word for each line is as follows:
 
 The process of keying in this program is as follows:
 
-0. If the computer is processing the OS, toggle the STOP switch to interrupt processing and take control manually.
-1. Load the initial memory address by setting the switch register to 0200[Oct].
-2. Toggle the LOAD ADD (Load Address) switch.  The Program Counter register will reflect that the system is now working at the specified memory location.
-3. Set the switch register to the word for the first instruction, in this case 7200[Oct].
-4. Toggle the DEP (Deposit) switch.  The Memory Address register will display the address that was just modified, and the Memory Buffer register will display the value stored in that address.  Additionally, the Program Counter will automatically advance to the next sequential address.
-5. Repeat steps 3 & 4 until the entire program has been entered.
+1. If the computer is processing the OS, toggle the STOP switch to interrupt processing and take control manually.
+2. Load the initial memory address by setting the switch register to 0200[Oct].
+3. Toggle the LOAD ADD (Load Address) switch.  The Program Counter register will reflect that the system is now working at the specified memory location.
+4. Set the switch register to the word for the first instruction, in this case 7200[Oct].
+5. Toggle the DEP (Deposit) switch.  The Memory Address register will display the address that was just modified, and the Memory Buffer register will display the value stored in that address.  Additionally, the Program Counter will automatically advance to the next sequential address.
+6. Repeat steps 3 & 4 until the entire program has been entered.
 
 In order to validate the program has been entered correctly, the user can query each memory address similarly.
 
