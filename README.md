@@ -1,6 +1,8 @@
 # PDP-8
 This repository contains subroutines and programs that I have written while playing with my PiDP8/I kit.  The emulator software, along with a bunch of documentation can be found at the [TangentSoft repository](https://github.com/tangentsoft/pidp8i).  
 
+* Note that this is currently a work in progress.  More will be coming.
+
 ## Getting started
 If you are just getting started with PDP-8 or PAL assembly writing, there are a number of useful beginner programs to familiarize yourself with the language.  I've organized them into, what I consider to be, a logical path where each program builds on the previous ones.
 
