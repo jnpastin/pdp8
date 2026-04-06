@@ -1,3 +1,2 @@
-*.PA linguist-detectable=false
-*.LS linguist-detectable=false
-
+*.PA linguist-language=Assembly linguist-detectable
+*.LS linguist-language=Assembly linguist-detectable
