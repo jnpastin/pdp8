@@ -1,0 +1,62 @@
+             /
+             / PDP-8 WORKBOOK
+             / PHASE 1
+             / EXERCISE 3
+             / PAL8 ASSEMBLY
+             / JEREMY PASTIN
+             / VERSION 1.0 APRIL 5, 2026
+             /
+
+       0001  FIELD 1
+       0200  *0200
+
+             /
+             / GOAL:  REFACTOR EXERCISE 2 TO LEVERAGE AUTO-INDEXING
+             / REGISTERS
+             /
+             / CREATE A LOOP THAT SUMS ALL OF THE NUMBERS FROM 1-10
+             / INCLUSIVELY, UTILIZING AUTO-INDEX REGISTERS
+             /
+
+             /INIT
+10200  6211          CDF     10
+10201  7300          CLA CLL
+             /CREATE TABLE
+10202  1222  TBLGEN, TAD     COUNTR  /USE THE COUNTER TO FILL THE TABLE
+10203  7041          CIA
+10204  3410          DCA I   AIX10   /WRITE THE VALUE TO MEMORY
+10205  2222          ISZ     COUNTR
+10206  5202          JMP     TBLGEN
+             /RESET
+10207  1377          TAD     (0300)
+10210  3010          DCA     AIX10   /RESET THE AUTOINDEX REGISTER
+10211  1376          TAD     (7766)
+10212  3222          DCA     COUNTR  /RESET THE LOOP COUNTER
+             /CREATE THE SUM
+10213  1410  SUMLP,  TAD I   AIX10
+10214  2222          ISZ     COUNTR
+10215  5213          JMP     SUMLP
+10216  3223          DCA     SUM
+10217  7402          HLT             /FRONT PANEL INSPECTION
+             /RETURN TO OS/8
+10220  6203          CIF CDF 00
+10221  5775          JMP I   (7600)  /RETURN TO OS/8
+
+             /CONSTANTS AND  VARIABLES
+10222  7766  COUNTR, 7766            /-10. COUNTS TO 0 VIA ISZ
+10223  0000  SUM,    0000
+
+10375  7600
+10376  7766
+10377  0300
+       0010  *0010
+10010  0300  AIX10,  0300
+
+             $
+
+
+AIX10  0010
+COUNTR 0222
+SUM    0223
+SUMLP  0213
+TBLGEN 0202
