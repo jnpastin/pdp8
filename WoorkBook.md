@@ -22,8 +22,8 @@
 - See why return‑slot conventions exist
 
 **Exercises**
-1. Absolute‑value subroutine 
-2. Compare two values (−1 / 0 / 1) 
+1. ✅ Absolute‑value subroutine 
+2. ✅ Compare two values (−1 / 0 / 1) 
 3. Nested subroutines and state‑saving bug fix 
 
 ---
