@@ -1,0 +1,11 @@
+# Build-time requirements for producing portable binaries.
+# Not needed to run the calculator — it has no runtime dependencies.
+#
+# Install with:  pip install -r build-requirements.txt
+# Then build with:  cd Calculator && pyinstaller --onefile pdp8_tui.py
+
+pyinstaller>=6.0
+
+# Windows only:  provides the _curses extension missing from the stdlib.
+# Uncomment on Windows, or let the GitHub Actions workflow handle it.
+# windows-curses
