@@ -21,6 +21,14 @@ on:
       - "v*"
   workflow_dispatch:
 
+# Allow the workflow to create and update GitHub Releases.
+permissions:
+  contents: write
+
+# Opt into Node.js 24 now, ahead of the June 2026 forced migration.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 jobs:
   test:
     name: Run test suite
