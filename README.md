@@ -58,7 +58,7 @@ The sole correctness criterion is:
 
 ## Download
 
-Pre-built single-file binaries are attached to each [GitHub Release](https://github.com/jnpastin/pdp8/releases). No installation or elevated privileges required — just download and run.
+Pre-built single-file binaries are attached to each [GitHub Release](https://github.com/jnpastin/pdp8-programmers-calculator/releases). No installation or elevated privileges required — just download and run.
 
 | Platform | File |
 |----------|------|
