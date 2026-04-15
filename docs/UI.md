@@ -22,13 +22,13 @@ The outer border never changes; only interior content swaps.
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────┐
-│ PDP‑8 Programmer’s Calculator                                               │
+│ PDP‑8 Programmer’s Calculator                                                │
 │──────────────────────────────────────────────────────────────────────────────│
 │                                                                              │
-│                         L     Accumulator                                   │
-│                         --- ---------------                                 │
-│                          1   111 111 111 111                                │
-│                    Octal:   7   7   7   7                                   │
+│                         L     Accumulator                                    │
+│                         --- ---------------                                  │
+│                          1   111 111 111 111                                 │
+│                    Octal:   7   7   7   7                                    │
 │                                                                              │
 │          Decimal:  signed:     -1    unsigned: 4095                          │
 ├──────────────────────────────────────────────────────────────────────────────┤
@@ -38,12 +38,12 @@ The outer border never changes; only interior content swaps.
 │                                                                              │
 │                                                                              │
 │  Commands:                                                                   │
-│        LOAD <n> · + <n> · - <n> · IAC · CIA · & <n> · | <n> · ^ <n>       │
-│          CLA    ·  CMA  ·  SET  · CLL · CML ·  STL  ·  RAL  ·  RAR        │
-│           BASE <dec|oct|bin>    ·       MODE <signed|unsigned>              │
+│        LOAD <n> · + <n> · - <n> · IAC · CIA · & <n> · | <n> · ^ <n>          │
+│          CLA    ·  CMA  ·  SET  · CLL · CML ·  STL  ·  RAL  ·  RAR           │
+│           BASE <dec|oct|bin>    ·       MODE <signed|unsigned>               │
 │                                 (H for help)                                 │
 ├──────────────────────────────────────────────────────────────────────────────┤
-│ BASE: DEC | DECIMAL: SIGNED | LAST: CIA                          Q : quit   │
+│ BASE: DEC | DECIMAL: SIGNED | LAST: CIA                           Q : quit   │
 └──────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -138,28 +138,28 @@ BASE: BIN                                                        Q : quit
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────┐
-│ PDP‑8 Programmer’s Calculator                                               │
+│ PDP‑8 Programmer’s Calculator                                                │
 │──────────────────────────────────────────────────────────────────────────────│
 │                                                                              │
 │ Commands                                                                     │
-│ ─────────────────────────────────────────────────────────────────────────── │
-│  LOAD <n>  (L <n>)  Load n into AC                                              │
-│  ADD  <n>  (+ <n>)  Add n to AC  (carry into Link)                              │
-│  SUB  <n>  (- <n>)  Subtract n from AC                                          │
-│  AND  <n>  (& <n>)  Bitwise AND  AC with n                                      │
-│  OR   <n>  (| <n>)  Bitwise OR   AC with n                                      │
-│  XOR  <n>  (^ <n>)  Bitwise XOR  AC with n                                      │
-│  IAC       (I)      Increment AC by 1  (carry into Link)                        │
-│  CIA                Complement and Increment AC  (two’s-complement negate)      │
-│  CLA  CMA  SET      Clear AC   /   Complement AC   /  Set AC to 7777           │
-│  CLL  CML  STL      Clear Link  /  Complement Link  /   Set Link to 1           │
-│  RAL  RAR           Rotate ⟨L, AC⟩ left / right one bit                        │
+│ ─────────────────────────────────────────────────────────────────────────────│
+│  LOAD <n>  (L <n>)  Load n into AC                                           │
+│  ADD  <n>  (+ <n>)  Add n to AC  (carry into Link)                           │
+│  SUB  <n>  (- <n>)  Subtract n from AC                                       │
+│  AND  <n>  (& <n>)  Bitwise AND  AC with n                                   │
+│  OR   <n>  (| <n>)  Bitwise OR   AC with n                                   │
+│  XOR  <n>  (^ <n>)  Bitwise XOR  AC with n                                   │
+│  IAC       (I)      Increment AC by 1  (carry into Link)                     │
+│  CIA                Complement and Increment AC  (two’s-complement negate)   │
+│  CLA  CMA  SET      Clear AC   /   Complement AC   /  Set AC to 7777         │
+│  CLL  CML  STL      Clear Link  /  Complement Link  /   Set Link to 1        │
+│  RAL  RAR           Rotate ⟨L, AC⟩ left / right one bit                      │
 │                                                                              │
-│  BASE <dec|oct|bin>       Set input number base  (default: OCT)             │
-│  MODE <signed|unsigned>   Decimal display mode   (default: SIGNED)          │
+│  BASE <dec|oct|bin>       Set input number base  (default: OCT)              │
+│  MODE <signed|unsigned>   Decimal display mode   (default: SIGNED)           │
 │                                                                              │
 ├──────────────────────────────────────────────────────────────────────────────┤
-│ H : return                                                        Q : quit  │
+│ H : return                                                         Q : quit  │
 └──────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -170,7 +170,6 @@ BASE: BIN                                                        Q : quit
 - Machine representation comes before human interpretation
 - Signedness is an interpretive lens, not state
 - Controls are adjacent to the state they modify
-- If it never changes, it does not belong on screen
 - The calculator supports thinking, not simulation
 
 ---

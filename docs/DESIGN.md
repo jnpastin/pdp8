@@ -40,13 +40,13 @@ Correctness is judged solely by:
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────┐
-│ PDP‑8 Programmer’s Calculator                                               │
+│ PDP‑8 Programmer’s Calculator                                                │
 │──────────────────────────────────────────────────────────────────────────────│
 │                                                                              │
-│                         L     Accumulator                                   │
-│                         --- ---------------                                 │
-│                          1   111 111 111 111                                │
-│                    Octal:   7   7   7   7                                   │
+│                         L     Accumulator                                    │
+│                         --- ---------------                                  │
+│                          1   111 111 111 111                                 │
+│                    Octal:   7   7   7   7                                    │
 │                                                                              │
 │          Decimal:  signed:     -1    unsigned: 4095                          │
 ├──────────────────────────────────────────────────────────────────────────────┤
@@ -56,12 +56,12 @@ Correctness is judged solely by:
 │                                                                              │
 │                                                                              │
 │  Commands:                                                                   │
-│        LOAD <n> · + <n> · - <n> · IAC · CIA · & <n> · | <n> · ^ <n>       │
-│          CLA    ·  CMA  ·  SET  · CLL · CML ·  STL  ·  RAL  ·  RAR        │
-│           BASE <dec|oct|bin>    ·       MODE <signed|unsigned>              │
+│        LOAD <n> · + <n> · - <n> · IAC · CIA · & <n> · | <n> · ^ <n>          │
+│          CLA    ·  CMA  ·  SET  · CLL · CML ·  STL  ·  RAL  ·  RAR           │
+│           BASE <dec|oct|bin>    ·       MODE <signed|unsigned>               │
 │                                 (H for help)                                 │
 ├──────────────────────────────────────────────────────────────────────────────┤
-│ BASE: DEC | DECIMAL: SIGNED | LAST: CIA                          Q : quit   │
+│ BASE: DEC | DECIMAL: SIGNED | LAST: CIA                           Q : quit   │
 └──────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -105,7 +105,7 @@ All alphabetic input is converted to uppercase **as it is typed**.
 
 Example keystrokes:
 ```
-a → A → AD → ADD
+a → A → Ad → AD → ADd → ADD
 ```
 
 Rules:
@@ -142,7 +142,7 @@ All commands are case‑insensitive (visually uppercased on entry).
 ### 8.1 Data Movement
 
 ```
-load <n>   | l <n>
+LOAD <n>   | L <n>
 ```
 Loads AC with `<n>`. Link unchanged.
 
@@ -151,13 +151,13 @@ Loads AC with `<n>`. Link unchanged.
 ### 8.2 Arithmetic
 
 ```
-add <n>     | + <n>
-sub <n>     | - <n>
-iac
-cia
+ADD <n>     | + <n>
+SUB <n>     | - <n>
+IAC
+CIA
 ```
 
-- `iac` increments AC by 1; carry toggles Link. (`i` is accepted as an alias.)
+- `IAC` increments AC by 1; carry toggles Link. (`I` is accepted as an alias.)
 - Arithmetic wraps unconditionally
 - Carry toggles Link
 
@@ -166,24 +166,24 @@ cia
 ### 8.3 Accumulator / Link Micro‑operations
 
 ```
-cla    clear AC
-cma    complement AC (ones complement)
-set    set AC = 7777
-cll    clear Link
-cml    complement Link
-stl    set Link = 1
-iac    increment AC  (alias: i)
-cia    complement and increment AC
-ral    rotate ⟨L,AC⟩ left one bit
-rar    rotate ⟨L,AC⟩ right one bit
+CLA    clear AC
+CMA    complement AC (ones complement)
+SET    set AC = 7777
+CLL    clear Link
+CML    complement Link
+STL    set Link = 1
+IAC    increment AC  (alias: I)
+CIA    complement and increment AC
+RAL    rotate ⟨L,AC⟩ left one bit
+RAR    rotate ⟨L,AC⟩ right one bit
 ```
 
 All correspond directly to PDP‑8 Group‑1 OPR semantics.
 
 Multiple no‑argument micro‑ops can be combined on one line, as an assembler would:
 ```
-cla cll iac
-cla cma
+CLA CLL IAC
+CLA CMA
 ```
 They are executed in left‑to‑right order; any single unrecognised token in the
 combination is an error and the session is left unchanged.
@@ -193,9 +193,9 @@ combination is an error and the session is left unchanged.
 ### 8.4 Logical Operations
 
 ```
-and <n>   | & <n>
-or  <n>   | | <n>
-xor <n>   | ^ <n>
+AND <n>   | & <n>
+OR  <n>   | | <n>
+XOR <n>   | ^ <n>
 ```
 
 - Operate on AC only
@@ -206,8 +206,8 @@ xor <n>   | ^ <n>
 ### 8.5 Rotate Operations
 
 ```
-ral
-rar
+RAL
+RAR
 ```
 
 - Rotate operates on **⟨L,AC⟩ as a 13‑bit value**
@@ -217,8 +217,8 @@ rar
 ## 9. Mode Commands
 
 ```
-base dec | oct | bin
-mode signed | unsigned
+BASE DEC | OCT | BIN
+MODE SIGNED | UNSIGNED
 ```
 
 - Mode commands never alter AC or Link
@@ -228,7 +228,7 @@ mode signed | unsigned
 
 ## 10. Help Screen
 
-- Toggled with `H` (key press, no Enter needed) or by submitting `H` at the prompt
+- Toggled with `H` 
 - Same 80×24 border as main screen; pane separator row shows plain `│` verticals instead of `├`/`┤`
 - No scrolling
 - `H` (hotkey), `Enter`, or `Q` returns to the main screen
