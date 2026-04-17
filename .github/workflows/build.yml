@@ -7,7 +7,7 @@
 # Outputs:
 #   pdp8calc-linux          — ELF binary, tested on ubuntu-latest (glibc ≥ 2.35)
 #   pdp8calc-macos-arm      — Mach-O arm64 binary, tested on macos-latest (Apple Silicon)
-#   pdp8calc-macos-intel    — Mach-O x86_64 binary, tested on macos-13 (Intel)
+#   pdp8calc-macos-intel    — Mach-O x86_64 binary, tested on macos-26-intel (Intel)
 #   pdp8calc-windows.exe    — PE32+ binary, tested on windows-latest
 #
 # The full test suite (247 tests) must pass before any binary is built.
@@ -88,14 +88,28 @@ jobs:
           pdp8_tui.py
 
       - name: Upload artifact (always)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ matrix.artifact }}
           path: dist/${{ matrix.artifact }}${{ matrix.ext }}
 
-      # Attach to the GitHub Release when triggered by a tag push.
-      - name: Attach binary to release
-        if: startsWith(github.ref, 'refs/tags/')
+  # Runs after all matrix builds succeed. Downloads every artifact and attaches
+  # them to the GitHub Release in one shot, avoiding the "immutable release"
+  # race condition that occurs when parallel jobs each try to upload separately.
+  release:
+    name: Publish release
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download all build artifacts
+        uses: actions/download-artifact@v8
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Attach binaries to release
         uses: softprops/action-gh-release@v3
         with:
-          files: dist/${{ matrix.artifact }}${{ matrix.ext }}
+          files: dist/*
