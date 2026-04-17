@@ -54,7 +54,7 @@ jobs:
           - os: macos-latest
             artifact: pdp8calc-macos-arm
             ext: ""
-          - os: macos-13
+          - os: macos-26-intel
             artifact: pdp8calc-macos-intel
             ext: ""
           - os: windows-latest
