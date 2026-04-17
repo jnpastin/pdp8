@@ -5,9 +5,10 @@
 #   - Manual dispatch from the Actions tab (workflow_dispatch).
 #
 # Outputs:
-#   pdp8calc-linux      — ELF binary, tested on ubuntu-latest (glibc ≥ 2.35)
-#   pdp8calc-macos      — Mach-O universal binary, tested on macos-latest
-#   pdp8calc-windows.exe — PE32+ binary, tested on windows-latest
+#   pdp8calc-linux          — ELF binary, tested on ubuntu-latest (glibc ≥ 2.35)
+#   pdp8calc-macos-arm      — Mach-O arm64 binary, tested on macos-latest (Apple Silicon)
+#   pdp8calc-macos-intel    — Mach-O x86_64 binary, tested on macos-13 (Intel)
+#   pdp8calc-windows.exe    — PE32+ binary, tested on windows-latest
 #
 # The full test suite (247 tests) must pass before any binary is built.
 # Tests run once on Linux; the build matrix is gated on that result.
@@ -55,7 +56,10 @@ jobs:
             artifact: pdp8calc-linux
             ext: ""
           - os: macos-latest
-            artifact: pdp8calc-macos
+            artifact: pdp8calc-macos-arm
+            ext: ""
+          - os: macos-13
+            artifact: pdp8calc-macos-intel
             ext: ""
           - os: windows-latest
             artifact: pdp8calc-windows
