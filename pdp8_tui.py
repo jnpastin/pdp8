@@ -328,6 +328,17 @@ _BACKSPACE_KEYS = frozenset({curses.KEY_BACKSPACE, 0x7F, 0x08})
 _ENTER_KEYS     = frozenset({ord("\n"), ord("\r"), curses.KEY_ENTER})
 _EXIT_KEYS      = frozenset({0x03, curses.KEY_F0 + 10, ord('Q'), ord('q')})  # Ctrl+C, F10, Q
 
+# On Windows, windows-curses (PDCurses) sends separate key codes for numpad keys
+# that differ from both ASCII and curses.KEY_ENTER.  Values from PDCurses curses.h:
+#   PADENTER = 0x1cb (459)  -- numpad Enter
+#   PADMINUS = 0x1d0 (464)  -- numpad −
+#   PADPLUS  = 0x1d1 (465)  -- numpad +
+if sys.platform == 'win32':
+    _ENTER_KEYS = _ENTER_KEYS | {0x1cb}               # PADENTER
+    _NUMPAD_CHAR_KEYS = {0x1d0: '-', 0x1d1: '+'}      # PADMINUS, PADPLUS
+else:
+    _NUMPAD_CHAR_KEYS = {}
+
 
 def _input_loop(stdscr: "curses.window", session: SessionState) -> None:
     """Main input loop.  Returns when the user exits."""
@@ -398,6 +409,15 @@ def _input_loop(stdscr: "curses.window", session: SessionState) -> None:
                 _draw_prompt(stdscr, "")
                 stdscr.refresh()
                 continue
+            buf.append(c)
+            if not in_help:
+                _draw_prompt(stdscr, "".join(buf))
+                stdscr.refresh()
+            continue
+
+        # ── Windows PDCurses numpad +/− (PADPLUS / PADMINUS) ─────────────────────
+        if ch in _NUMPAD_CHAR_KEYS:
+            c = _NUMPAD_CHAR_KEYS[ch]
             buf.append(c)
             if not in_help:
                 _draw_prompt(stdscr, "".join(buf))
